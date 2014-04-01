@@ -30,9 +30,24 @@ set ignorecase
 nnoremap & :&&<Enter>
 xnoremap & :&&<Enter>
 
+let mapleader = ","
+noremap \ ,
 " tabularize both = an =>
 map <leader>] :Tab /=>\=<CR>
 nmap <silent> <leader>d <Plug>DashSearch
+nmap <leader>v :tabedit $MYVIMRC<CR>
+
+" Bubble single lines
+nmap <C-Up> [e
+nmap <C-Down> ]e
+" Bubble multiple lines
+vmap <C-Up> [egv
+vmap <C-Down> ]egv
+
+nnoremap <leader>u :GundoToggle<CR>
+if has("autocmd")
+	autocmd! bufwritepost .vimrc source $MYVIMRC
+endif
 
 autocmd FileType php set commentstring=//\ %s
 
