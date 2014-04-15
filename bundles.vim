@@ -6,7 +6,6 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
 
-filetype plugin indent on
 Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-characterize'
 Bundle 'tpope/vim-commentary'
@@ -60,3 +59,5 @@ Bundle 'rking/ag.vim'
 " Autoclose is cool, but breaks undo :(
 " Bundle 'townk/vim-autoclose'
 " Bundle 'smarty.vim'
+
+filetype plugin indent on
