@@ -37,7 +37,7 @@ set smartcase
 set ignorecase
 set title
 set wrap linebreak
-set listchars=tab:>\ ,trail:.
+set listchars=tab:▸\ ,trail:.
 set scrolloff=2
 " Fix the & command in normal+visual modes {{{
 nnoremap & :&&<Enter>
