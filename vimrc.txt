@@ -1,5 +1,5 @@
 source ~/dotfiles/bundles.vim
-
+" scriptencoding utf-8
 set background=dark
 colorscheme solarized
 
@@ -15,7 +15,7 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#tabline#enabled = 1
 
-let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<c-tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 set backupdir=~/vimtmp
@@ -31,13 +31,11 @@ set hidden
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 
-runtime macros/matchit.vim
-
 set smartcase
 set ignorecase
 set title
 set wrap linebreak
-set listchars=tab:▸\ ,trail:·
+set listchars=tab:>\ ,trail:-
 set scrolloff=2
 " Fix the & command in normal+visual modes {{{
 nnoremap & :&&<Enter>
@@ -105,45 +103,15 @@ function! HLNext (blinktime)
 	redraw
 endfunction
 
-" highlight ColorColumn ctermbg=magenta
+highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%101v', 100)
-" highlight ColorColumn ctermbg=magenta
 
+" search .htaccess with Silver Searcher
 let g:agprg="ag --column --hidden"
 " Syntastic settings{{{
 let g:syntastic_php_checkers = ['php']
-" search .htaccess with Silver Searcher
 "}}}
-" Improved PHP Omnicompletion {{{
+" Improved PHP Omnicompletion
 let g:phpcomplete_relax_static_constraint = 1
 
-
-" Neocomplete settings{{{
-" let g:acp_enableAtStartup = 0
-" " Use neocomplete.
-" let g:neocomplete#enable_at_startup = 1
-" " Use smartcase.
-" let g:neocomplete#enable_smart_case = 1
-" " Set minimum syntax keyword length.
-" let g:neocomplete#sources#syntax#min_keyword_length = 3
-" let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" autocmd FileType php setlocal omnifunc=phpcomplete#CompleteTags
-" imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-
-" smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-" xmap <C-k>     <Plug>(neosnippet_expand_target)
-" " SuperTab like snippets behavior.
-" imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-" \ "\<Plug>(neosnippet_expand_or_jump)"
-" \: pumvisible() ? "\<C-n>" : "\<TAB>"
-" smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-" \ "\<Plug>(neosnippet_expand_or_jump)"
-" \: "\<TAB>"
-
-" " For snippet_complete marker.
-" if has('conceal')
-"   set conceallevel=2 concealcursor=i
-" endif
-"}}}
 " vim:ft=vim:foldmethod=marker
