@@ -27,9 +27,9 @@ Bundle 'tommcdo/vim-exchange'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'SirVer/ultisnips'
 Bundle 'honza/vim-snippets'
-Bundle 'Valloric/YouCompleteMe'
 
 " for iTerm compatibility
 " Bundle 'sjl/vitality.vim'
