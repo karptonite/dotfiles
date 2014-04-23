@@ -1,0 +1,22 @@
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+[user]
+	name = Daniel Karp
+	email = danielkarp@gmail.com
+[gui]
+	recentrepo = /Users/karp/Documents/git/bgg
+[core]
+	excludesfile = /Users/karp/.gitignore_global
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[push]
+	default = current
+[github]
+	user = karptonite
