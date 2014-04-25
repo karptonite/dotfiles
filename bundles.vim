@@ -30,6 +30,7 @@ Bundle 'mattn/gist-vim'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'SirVer/ultisnips'
 Bundle 'honza/vim-snippets'
+Bundle 'Raimondi/delimitMate'
 
 " for iTerm compatibility
 " Bundle 'sjl/vitality.vim'
