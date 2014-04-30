@@ -30,7 +30,7 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let delimitMate_expand_space = 1
 let delimitMate_expand_cr = 1
-let delimitMate_jump_expansion = 1
+" let delimitMate_jump_expansion = 1
 
 " Ultisnip/YCM both use tab? {{{1 "
 " function! g:UltiSnips_Complete()
@@ -104,16 +104,28 @@ nmap <C-Down> ]e
 vmap <C-Up> [egv
 vmap <C-Down> ]egv
 
+function! s:MkNonExDir(file, buf)
+    if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
+        let dir=fnamemodify(a:file, ':h')
+        if !isdirectory(dir)
+            call mkdir(dir, 'p')
+        endif
+    endif
+endfunction
 nnoremap <leader>u :GundoToggle<CR>
 if has("autocmd")
+	augroup BWCCreateDir
+		autocmd!
+		autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
+	augroup END
 	augroup mygroup
-	autocmd!
-	autocmd bufwritepost .vimrc source $MYVIMRC
-	autocmd bufwritepost .vimrc AirlineRefresh
-"	autocmd BufRead,BufNewFile *.tpl set filetype=smarty
-	autocmd FileType php set commentstring=//\ %s
-	autocmd BufWritePost *.php EnableFastPHPFolds
-	autocmd FileType php AlignCtrl g =>
+		autocmd!
+		autocmd bufwritepost .vimrc source $MYVIMRC
+		autocmd bufwritepost .vimrc AirlineRefresh
+		"	autocmd BufRead,BufNewFile *.tpl set filetype=smarty
+		autocmd FileType php set commentstring=//\ %s
+		autocmd BufWritePost *.php EnableFastPHPFolds
+		autocmd FileType php AlignCtrl g =>
 	augroup END
 endif
 
