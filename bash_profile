@@ -10,5 +10,5 @@ export EDITOR="vim"
 alias autosync='/Users/karp/scripts/autosync /Users/karp/Documents/git/bgg/ karp@dev.geekdo.com:/var/www/karp/'
 alias bsync='/Users/karp/scripts/rsyncnotify /Users/karp/Documents/git/bgg/ karp@dev.geekdo.com:/var/www/karp/'
 
-PATH="/usr/local/bin:/Users/karp/.composer/vendor/bin:${PATH}"
+PATH="/usr/local/bin:/Users/karp/.composer/vendor/bin:/usr/local/opt/ruby/bin:${PATH}:$HOME/bin"
 export PATH

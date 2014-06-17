@@ -2,7 +2,7 @@ set nocompatible
 filetype off
 
 " Vundle setup
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 Bundle 'gmarik/vundle'
 
@@ -12,7 +12,8 @@ Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-sensible'
-" Bundle 'tpope/vim-sleuth'
+Bundle 'tpope/vim-projectionist'
+Bundle 'tpope/vim-sleuth'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'nelstrom/vim-qargs.git'
@@ -27,9 +28,10 @@ Bundle 'tommcdo/vim-exchange'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
-Bundle 'Valloric/YouCompleteMe'
+" Bundle 'Valloric/YouCompleteMe'
 Bundle 'SirVer/ultisnips'
 Bundle 'honza/vim-snippets'
+Bundle 'kshenoy/vim-signature'
 Bundle 'Raimondi/delimitMate'
 
 " for iTerm compatibility
@@ -48,7 +50,7 @@ Bundle 'bling/vim-airline'
 Bundle 'vim-scripts/Align'
 "from a fork--should go to the real version if the bugfix is merged
 Bundle 'karptonite/phpfolding.vim'
-Bundle 'shawncplus/phpcomplete.vim'
+" Bundle 'shawncplus/phpcomplete.vim'
 " Custom textobjects
 Bundle 'kana/vim-textobj-user.git'
 Bundle 'kana/vim-textobj-entire.git'
@@ -57,8 +59,6 @@ Bundle 'kana/vim-textobj-indent.git'
 Bundle 'kana/vim-textobj-line.git'
 
 Bundle 'rking/ag.vim'
-" Autoclose is cool, but breaks undo :(
-" Bundle 'townk/vim-autoclose'
 " Bundle 'smarty.vim'
 
 filetype plugin indent on
