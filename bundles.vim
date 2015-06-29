@@ -4,7 +4,7 @@ filetype off
 " Vundle setup
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
-Bundle 'gmarik/vundle'
+Bundle 'gmarik/Vundle.vim'
 
 Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-characterize'
@@ -13,7 +13,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-sensible'
 Bundle 'tpope/vim-projectionist'
-Bundle 'tpope/vim-sleuth'
+Bundle 'karptonite/vim-sleuth'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'nelstrom/vim-qargs.git'
@@ -22,15 +22,16 @@ Bundle 'scrooloose/syntastic'
 " Bundle 'Shougo/neocomplete.vim'
 " Bundle 'Shougo/neosnippet.vim'
 " Bundle 'Shougo/neosnippet-snippets'
+Bundle 'suan/vim-instant-markdown'
 
 Bundle 'airblade/vim-gitgutter'
 Bundle 'tommcdo/vim-exchange'
-Bundle 'kien/ctrlp.vim'
+Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
 " Bundle 'Valloric/YouCompleteMe'
 Bundle 'SirVer/ultisnips'
-Bundle 'honza/vim-snippets'
+" Bundle 'honza/vim-snippets'
 Bundle 'kshenoy/vim-signature'
 Bundle 'Raimondi/delimitMate'
 
@@ -60,5 +61,8 @@ Bundle 'kana/vim-textobj-line.git'
 
 Bundle 'rking/ag.vim'
 " Bundle 'smarty.vim'
+"
+Bundle 'tobyS/vmustache'
+Bundle 'tobyS/pdv'
 
 filetype plugin indent on
