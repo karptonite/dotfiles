@@ -1,0 +1,63 @@
+snippet //= "comment separator"
+//==============================================================================================
+endsnippet	
+
+snippet fire "FirePHP"
+$GLOBALS['firephp']->log( $0 );
+endsnippet
+
+snippet php "PHP tag"
+<?php
+
+endsnippet
+
+snippet cw "Clockwork info"
+$GLOBALS['clockwork']->info( $0 );
+endsnippet
+
+snippet pub "Public function" b
+public function ${1:name}(${2:$param})
+{
+	${VISUAL}${3:return null;}
+}
+endsnippet
+
+snippet pro "Protected function" b
+protected function ${1:name}(${2:$param})
+{
+	${VISUAL}${3:return null;}
+}
+endsnippet
+
+snippet pri "Private function" b
+private function ${1:name}(${2:$param})
+{
+	${VISUAL}${3:return null;}
+}
+endsnippet
+
+snippet class "Class declaration template" b
+class ${1:`!p snip.rv=snip.fn.split('.')[0]`}
+{
+	$0
+}
+endsnippet
+
+snippet pubs "Public static function" b
+public static function ${1:name}(${2:$param})
+{
+	${VISUAL}${3:return null;}
+}
+endsnippet
+
+snippet construct "__construct()" b
+public function __construct(${1:$dependencies})
+{${1/\$(\w+)(, )*/\n        $this->$1 = $$1;/g}
+}
+endsnippet
+
+snippet req1 "require_once()"
+require_once('${1:../connect.php}');
+endsnippet
+
+
