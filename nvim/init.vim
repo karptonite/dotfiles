@@ -1,3 +1,7 @@
+" function! DoRemote(arg)
+"   UpdateRemotePlugins
+" endfunction
+
 call plug#begin('~/.nvim/plugged')
 
 Plug 'tpope/vim-unimpaired'
@@ -20,6 +24,7 @@ Plug 'karptonite/phpfolding.vim'
 Plug 'StanAngeloff/php.vim'
 Plug 'chriskempson/base16-vim'
 Plug 'rking/ag.vim'
+" Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 " Plug 'ctrlpvim/ctrlp.vim'
 Plug 'thomwiggers/vim-colors-solarized' | Plug 'flazz/vim-colorschemes'
 Plug 'airblade/vim-gitgutter'
@@ -30,16 +35,21 @@ Plug 'SirVer/ultisnips'
 Plug 'kana/vim-textobj-user' | Plug 'kana/vim-textobj-entire' | Plug 'kana/vim-textobj-indent' | Plug 'kana/vim-textobj-line'
 Plug 'benekastah/neomake' 
 Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'junegunn/vim-easy-align'
 Plug 'flazz/vim-colorschemes'
 Plug 'jgdavey/tslime.vim'
 Plug 'wellle/targets.vim'
+Plug 'mattn/emmet-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
 Plug 'junegunn/fzf.vim'
-Plug 'danro/rename.vim'
+" Plug 'danro/rename.vim'
+" Plug 'phpvim/phpcd.vim', { 'for': 'php' , 'do': 'composer install' }
+Plug 'vim-scripts/progressbar-widget' " used for showing the index progress
+Plug 'leafgarland/typescript-vim'
 
 call plug#end()
 
-syntax enable
+" syntax enable
 set background=dark
 " Bubble single lines
 nmap <C-k> [e
@@ -49,9 +59,9 @@ vmap <C-k> [egv
 vmap <C-j> ]egv
 
 let g:snips_author="Daniel Karp"
-let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsListSnippets="<c-l>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 " " handled by vim-sleuth now?
@@ -107,6 +117,10 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 let g:neomake_php_enabled_makers = ['php']
+let g:neomake_typescript_enabled_makers = ['tslint']
+
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#disable_auto_complete = 1
 
 set wildignore+=*/pear/*,*/Zend/*,*/EbatNs/*,*/angular-1.1.x/*,*/documentation/*
 set ssop-=options    " do not store global and local values in a session
@@ -135,6 +149,7 @@ nnoremap ' `
 nnoremap ` '
 
 nnoremap <C-P> :Files<CR>
+nnoremap <leader>h :History<CR>
 nnoremap <leader>b :Buffers<CR>
 
 set wildmode=list:longest
@@ -149,11 +164,18 @@ nmap <leader>v :edit $MYVIMRC<CR>
 
 " changes 'foo' to 'foo' => self::FOO
 nmap <leader>c yi'f'a => self::<ESC>"0pviwUA
+nmap <leader>o 0f[i-><ESC>lds[ds'e
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 " changes foo to 'foo' => $args['foo'],
 nmap <leader>a 0wyiwysiw'A => $args['0'],F$
 
-
+nnoremap <Leader>e :e <C-R>=expand('%:h') . '/'<CR>
 
 nnoremap <BS> <C-^>
 
@@ -179,13 +201,16 @@ nnoremap <leader>u :MundoToggle<CR>
 augroup mygroup
    autocmd!
    autocmd FileType scheme RainbowParentheses
-   autocmd bufwritepost ~/.config/nvim/init.vim source $MYVIMRC
-   autocmd bufwritepost ~/.config/nvim/init.vim AirlineRefresh
+   autocmd bufwritepost ~/dotfiles/nvim/init.vim source $MYVIMRC
+   autocmd bufwritepost ~/dotfiles/nvim/init.vim AirlineRefresh
+   " autocmd FileType php setlocal omnifunc=phpcd#CompletePHP
    autocmd BufRead,BufNewFile *.tpl set filetype=html
-   autocmd filetype lisp,scheme,art setlocal equalprg=scmindent.rkt
+   autocmd FileType lisp,scheme,art setlocal equalprg=scmindent.rkt
+   autocmd FileType scheme let b:delimitMate_quotes="\""
    autocmd FileType php set commentstring=//\ %s
    autocmd BufWritePost *.php EnableFastPHPFolds
    autocmd BufWritePost *.php Neomake
+   autocmd BufWritePost *.ts Neomake
    autocmd FileType php AlignCtrl g =>
    autocmd FileType md setlocal formatoptions+=t 
 augroup END
@@ -195,5 +220,5 @@ nmap <leader>t <Plug>NormalModeSendToTmux
 vmap <leader>t <Plug>SendSelectionToTmux
 let g:tslime_ensure_trailing_newlines = 1
 " }}}
-colorscheme base16-solarized
+colorscheme monokai
 " vim:ft=vim:foldmethod=marker

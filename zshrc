@@ -56,7 +56,7 @@ plugins=(git)
 
 export COMPOSER_HOME=$HOME/.composer
 
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/Users/karp/.composer/vendor/bin:/usr/local/opt/ruby/bin:/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/mysql/bin:/Users/karp/bin"
+export PATH="/usr/local/bin:/usr/local/sbin:/Users/karp/.composer/vendor/bin:/usr/local/opt/ruby/bin:/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/mysql/bin:/Users/karp/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 export GOPATH=$HOME/Documents/go
@@ -77,6 +77,7 @@ export FZF_DEFAULT_OPTS='--bind ctrl-f:page-down,ctrl-b:page-up'
 # else
 #   export EDITOR='mvim'
 # fi
+export EDITOR='nvim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"

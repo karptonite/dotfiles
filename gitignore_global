@@ -3,4 +3,6 @@
 .npmignore
 tags
 .idea
-
+.phpcd
+.watchmanconfig
+watchman-trigger.json
