@@ -1,0 +1,8 @@
+*~
+.DS_Store
+.npmignore
+tags
+.idea
+.phpcd
+.watchmanconfig
+watchman-trigger.json
