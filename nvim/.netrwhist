@@ -1,4 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
-let g:netrw_dirhist_1='/Users/karp/Documents/git/bgg'
-let g:netrw_dirhist_2='/Users/karp/Documents/git/bgg/geekui2/src/app/actions'
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/Users/karp/Documents/git/myblog/source'
+let g:netrw_dirhist_2='/Users/karp/Documents/git/myblog/source/_posts'
+let g:netrw_dirhist_3='/Users/karp/Documents/git/myblog/source'
+let g:netrw_dirhist_4='/Users/karp/Documents/git/myblog/source/_posts'
+let g:netrw_dirhist_5='/Users/karp/Documents/git/myblog/source'
+let g:netrw_dirhist_6='/Users/karp/Documents/git/myblog/source/_posts'
+let g:netrw_dirhist_7='/Users/karp/Documents/git/qmk_firmware_root/keyboards/preonic/keymaps/karptonite'

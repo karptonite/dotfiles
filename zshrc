@@ -50,7 +50,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(npm docker composer yarn)
 
 # User configuration
 
@@ -61,8 +61,8 @@ export PATH="/usr/local/bin:/usr/local/sbin:/Users/karp/.composer/vendor/bin:/us
 
 export GOPATH=$HOME/Documents/go
 export PATH=$PATH:$GOPATH/bin
-export PATH="$(brew --prefix homebrew/php/php55)/bin:$PATH"
-export PATH="$PATH:$(ruby -rubygems -e 'puts Gem.user_dir')/bin"
+# export PATH="/usr/local/opt/php@5.6/bin:$PATH"
+export PATH="$PATH:$(ruby -r rubygems -e 'puts Gem.user_dir')/bin"
 export PATH="$PATH:$HOME/.cabal/bin"
 export PATH="$PATH:$COMPOSER_HOME/vendor/bin"
 source $ZSH/oh-my-zsh.sh
@@ -108,3 +108,4 @@ alias bsync='/Users/karp/scripts/rsyncnotify /Users/karp/Documents/git/bgg/ karp
 alias dave='ssh pair@wes.atst.io'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+PROMPT='${ret_status} %{$fg[cyan]%}%2~%{$reset_color%} $(git_prompt_info)'

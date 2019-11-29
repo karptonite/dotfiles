@@ -1,8 +1,11 @@
 *~
 .DS_Store
 .npmignore
-tags
+/tags
 .idea
 .phpcd
 .watchmanconfig
 watchman-trigger.json
+.session.vim
+.vscode
+yarn-error.log

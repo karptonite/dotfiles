@@ -1,3 +1,4 @@
+
 " function! DoRemote(arg)
 "   UpdateRemotePlugins
 " endfunction
@@ -12,6 +13,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-eunuch'
+" Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 Plug 'tpope/vim-vinegar'
 Plug 'Chiel92/vim-autoformat'
 Plug 'karptonite/vim-sleuth'
@@ -20,13 +22,22 @@ Plug 'Raimondi/delimitMate'
 Plug 'godlygeek/tabular'
 Plug 'vim-scripts/Align'
 Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+" Plug 'phpfolding.vim'
 Plug 'karptonite/phpfolding.vim'
+" Plug 'phpvim/phpfold.vim', { 'for': 'php', 'do':'composer update' }
 Plug 'StanAngeloff/php.vim'
 Plug 'chriskempson/base16-vim'
-Plug 'rking/ag.vim'
+" Plug 'rking/ag.vim'
+Plug 'chr4/nginx.vim'
+" Plug 'mileszs/ack.vim'
 " Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+" Plug 'Shougo/denite.nvim'
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+Plug 'Shougo/echodoc.vim'
 " Plug 'ctrlpvim/ctrlp.vim'
-Plug 'thomwiggers/vim-colors-solarized' | Plug 'flazz/vim-colorschemes'
+Plug 'frankier/neovim-colors-solarized-truecolor-only' | Plug 'flazz/vim-colorschemes'
 Plug 'airblade/vim-gitgutter'
 " Plug 'mattn/gist-vim'
 Plug 'kshenoy/vim-signature'
@@ -43,14 +54,17 @@ Plug 'mattn/emmet-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
 Plug 'junegunn/fzf.vim'
 " Plug 'danro/rename.vim'
-" Plug 'phpvim/phpcd.vim', { 'for': 'php' , 'do': 'composer install' }
+ " Plug 'phpvim/phpcd.vim', { 'for': 'php' , 'do': 'composer install' }
 Plug 'vim-scripts/progressbar-widget' " used for showing the index progress
 Plug 'leafgarland/typescript-vim'
+" needed for 'quramy/tsuquyomi'
+" Plug 'Shougo/vimproc.vim'
+" Plug 'quramy/tsuquyomi'
 
 call plug#end()
 
 " syntax enable
-set background=dark
+set termguicolors
 " Bubble single lines
 nmap <C-k> [e
 nmap <C-j> ]e
@@ -64,19 +78,28 @@ let g:UltiSnipsListSnippets="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
+let g:markdown_fenced_languages = ['php', 'typescript']
+
 " " handled by vim-sleuth now?
 set tabstop=3
 set softtabstop=3
 set shiftwidth=3
 
+set undofile
+
 set tags=tags
+set undodir=~/.nvim/undo
 set backupdir=~/vimtmp
 set dir=~/vimtmp
 set number
 set relativenumber
 set nostartofline
+" investigate breakindent
+set breakindent
+set incsearch
 set hidden
 set hlsearch 
+set icm=nosplit
 call togglebg#map("")
 set cursorline
 set lazyredraw
@@ -99,21 +122,34 @@ cnoremap <C-n> <Down>
 let delimitMate_expand_space = 1
 let delimitMate_expand_cr = 1
 
+"Save and restore session {{{
+fu! SaveSess()
+    execute 'mksession! ' . getcwd() . '/.session.vim'
+endfunction
 
-"ctrlp settings {{{
-" let g:ctrlp_show_hidden = 1
-" let g:ctrlp_clear_cache_on_exit = 0
-" let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-" let g:ctrlp_max_files=30000 
-" let g:ctrlp_open_new_file = 'h'
-" let g:ctrlp_lazy_update = 1
-" }}}
+fu! RestoreSess()
+if filereadable(getcwd() . '/.session.vim')
+    execute 'so ' . getcwd() . '/.session.vim'
+    if bufexists(1)
+        for l in range(1, bufnr('$'))
+            if bufwinnr(l) == -1
+                exec 'sbuffer ' . l
+            endif
+        endfor
+    endif
+endif
+syntax on
+endfunction
+
+autocmd VimLeave * call SaveSess()
+" autocmd VimEnter * call RestoreSess()
+"}}}
+
 "Airline settings {{{
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#tabline#enabled = 1
 "}}}
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 let g:neomake_php_enabled_makers = ['php']
@@ -154,6 +190,16 @@ nnoremap <leader>b :Buffers<CR>
 
 set wildmode=list:longest
 
+"let g:LanguageClient_autoStart = 1
+"let g:LanguageClient_serverCommands = {
+"    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+"    \ 'typescript': ['/usr/local/bin/typescript-language-server', '--stdio'],
+"    \ }
+
+
+" nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+" nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+
 " tabularize both = an =>
 nmap <leader>= :Tab /=>\@!<CR>
 nmap <Leader>] :Tab /=><CR>
@@ -176,6 +222,7 @@ nmap ga <Plug>(EasyAlign)
 nmap <leader>a 0wyiwysiw'A => $args['0'],F$
 
 nnoremap <Leader>e :e <C-R>=expand('%:h') . '/'<CR>
+vnoremap <Leader>j :!python -m json.tool<CR>
 
 nnoremap <BS> <C-^>
 
@@ -190,6 +237,17 @@ if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 endif
 
+" if executable('ag')
+"   let g:ackprg = 'ag --vimgrep'
+" endif
+
+" cnoreabbrev ag Ack!
+" cnoreabbrev aG Ack!
+" cnoreabbrev Ag Ack!
+" cnoreabbrev AG Ack!
+" let g:ackhighlight = 1
+" let g:ackautoclose = 1
+
 " Make Y behave like C and D
 nnoremap Y y$
 
@@ -200,11 +258,13 @@ set rtp+=/usr/local/opt/fzf
 nnoremap <leader>u :MundoToggle<CR>
 augroup mygroup
    autocmd!
+   " autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
    autocmd FileType scheme RainbowParentheses
    autocmd bufwritepost ~/dotfiles/nvim/init.vim source $MYVIMRC
    autocmd bufwritepost ~/dotfiles/nvim/init.vim AirlineRefresh
    " autocmd FileType php setlocal omnifunc=phpcd#CompletePHP
    autocmd BufRead,BufNewFile *.tpl set filetype=html
+   autocmd BufRead,BufNewFile location_rules.conf set filetype=nginx
    autocmd FileType lisp,scheme,art setlocal equalprg=scmindent.rkt
    autocmd FileType scheme let b:delimitMate_quotes="\""
    autocmd FileType php set commentstring=//\ %s
@@ -212,7 +272,8 @@ augroup mygroup
    autocmd BufWritePost *.php Neomake
    autocmd BufWritePost *.ts Neomake
    autocmd FileType php AlignCtrl g =>
-   autocmd FileType md setlocal formatoptions+=t 
+   autocmd FileType md, markdown setlocal formatoptions+=t 
+   "autocmd Filetype typescript nnoremap <buffer> <C-]> :call LanguageClient_textDocument_definition()<CR>
 augroup END
 
 " tslime {{{
@@ -220,5 +281,7 @@ nmap <leader>t <Plug>NormalModeSendToTmux
 vmap <leader>t <Plug>SendSelectionToTmux
 let g:tslime_ensure_trailing_newlines = 1
 " }}}
-colorscheme monokai
+colorscheme base16-monokai
+let g:airline_theme='base16_monokai'
+set background=dark
 " vim:ft=vim:foldmethod=marker
