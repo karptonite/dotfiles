@@ -44,7 +44,8 @@ Plug 'kshenoy/vim-signature'
 Plug 'rizzatti/funcoo.vim' | Plug 'rizzatti/dash.vim'
 Plug 'SirVer/ultisnips'
 Plug 'kana/vim-textobj-user' | Plug 'kana/vim-textobj-entire' | Plug 'kana/vim-textobj-indent' | Plug 'kana/vim-textobj-line'
-Plug 'benekastah/neomake' 
+"Plug 'benekastah/neomake' 
+Plug 'dense-analysis/ale'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'flazz/vim-colorschemes'
@@ -152,8 +153,10 @@ let g:airline#extensions#tabline#enabled = 1
 "}}}
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-let g:neomake_php_enabled_makers = ['php']
-let g:neomake_typescript_enabled_makers = ['tslint']
+let b:ale_fixers = {'typescript': ['prettier', 'eslint']}
+let g:ale_fix_on_save = 1
+" let g:neomake_php_enabled_makers = ['php']
+" let g:neomake_typescript_enabled_makers = ['eslint']
 
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#disable_auto_complete = 1
@@ -269,8 +272,8 @@ augroup mygroup
    autocmd FileType scheme let b:delimitMate_quotes="\""
    autocmd FileType php set commentstring=//\ %s
    autocmd BufWritePost *.php EnableFastPHPFolds
-   autocmd BufWritePost *.php Neomake
-   autocmd BufWritePost *.ts Neomake
+   "autocmd BufWritePost *.php Neomake
+   "autocmd BufWritePost *.ts Neomake
    autocmd FileType php AlignCtrl g =>
    autocmd FileType md, markdown setlocal formatoptions+=t 
    "autocmd Filetype typescript nnoremap <buffer> <C-]> :call LanguageClient_textDocument_definition()<CR>

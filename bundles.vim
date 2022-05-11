@@ -44,6 +44,7 @@ Bundle 'tommcdo/vim-ninja-feet'
 " Bundle 'altercation/vim-colors-solarized'
 Bundle 'thomwiggers/vim-colors-solarized'
 Bundle 'nelstrom/vim-blackboard'
+Bundle 'chriskempson/base16-vim'
 
 Bundle 'rizzatti/funcoo.vim'
 Bundle 'rizzatti/dash.vim'

@@ -8,7 +8,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 source ~/dotfiles/bundles.vim
 " scriptencoding utf-8
 set background=dark
-colorscheme solarized
+colorscheme blackboard
 
 " " handled by vim-sleuth now?
 set tabstop=3

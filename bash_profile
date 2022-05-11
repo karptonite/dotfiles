@@ -17,6 +17,4 @@ PATH="/usr/local/bin:/Users/karp/.composer/vendor/bin:/usr/local/opt/ruby/bin:${
 export PATH
 export GOPATH=$HOME/Documents/go
 export PATH=$PATH:$GOPATH/bin
-export PATH="$(brew --prefix homebrew/php/php55)/bin:$PATH"
-export PATH="$PATH:$(ruby -rubygems -e 'puts Gem.user_dir')/bin"
 export PATH="$PATH:$HOME/.cabal/bin"
